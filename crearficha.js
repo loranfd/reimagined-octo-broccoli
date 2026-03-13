@@ -1,10 +1,139 @@
+// ============================================
+// GOOGLE PLACES AUTOCOMPLETE (Ubicación España)
+// ============================================
+let googlePlacesAutocomplete = null;
+let googlePlacesSelected = false;
+
+function getGoogleMapsApiKey() {
+  const configured = window.GOOGLE_MAPS_API_KEY;
+  if (typeof configured === 'string' && configured.trim()) return configured.trim();
+
+  const metaTag = document.querySelector('meta[name="google-maps-api-key"]');
+  if (metaTag) {
+    const metaValue = (metaTag.getAttribute('content') || '').trim();
+    if (metaValue) return metaValue;
+  }
+
+  return '';
+}
+
+function loadGooglePlacesScript() {
+  const apiKey = getGoogleMapsApiKey();
+  if (!apiKey) {
+    console.warn('Google Maps API key no configurada. Define window.GOOGLE_MAPS_API_KEY o la meta google-maps-api-key.');
+    return;
+  }
+
+  if (window.google?.maps?.places) {
+    window.initGooglePlacesAutocomplete?.();
+    return;
+  }
+
+  const existingScript = document.querySelector('script[data-google-places-autocomplete]');
+  if (existingScript) return;
+
+  const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&callback=initGooglePlacesAutocomplete`;
+  script.async = true;
+  script.defer = true;
+  script.dataset.googlePlacesAutocomplete = 'true';
+  script.onerror = () => {
+    console.error('No se pudo cargar Google Maps JavaScript API. Revisa la API key y restricciones.');
+  };
+
+  document.head.appendChild(script);
+}
+
+function setUbicacionHiddenFields(data = {}) {
+  const fields = {
+    'ubicacion-municipio': data.municipio || '',
+    'ubicacion-provincia': data.provincia || '',
+    'ubicacion-comunidad': data.comunidad || '',
+    'ubicacion-pais': data.pais || '',
+    'ubicacion-latitud': data.latitud || '',
+    'ubicacion-longitud': data.longitud || ''
+  };
+
+  Object.entries(fields).forEach(([id, value]) => {
+    const input = document.getElementById(id);
+    if (input) input.value = value;
+  });
+}
+
+function extractAddressData(place) {
+  const data = {
+    municipio: '',
+    provincia: '',
+    comunidad: '',
+    pais: '',
+    latitud: '',
+    longitud: ''
+  };
+
+  if (!place || !Array.isArray(place.address_components)) return data;
+
+  place.address_components.forEach((component) => {
+    const types = component.types || [];
+
+    if (types.includes('locality')) data.municipio = component.long_name;
+    if (!data.municipio && types.includes('postal_town')) data.municipio = component.long_name;
+    if (!data.municipio && types.includes('administrative_area_level_3')) data.municipio = component.long_name;
+
+    if (types.includes('administrative_area_level_2')) data.provincia = component.long_name;
+    if (types.includes('administrative_area_level_1')) data.comunidad = component.long_name;
+    if (types.includes('country')) data.pais = component.long_name;
+  });
+
+  if (place.geometry?.location) {
+    data.latitud = String(place.geometry.location.lat());
+    data.longitud = String(place.geometry.location.lng());
+  }
+
+  return data;
+}
+
+window.initGooglePlacesAutocomplete = function initGooglePlacesAutocomplete() {
+  const ubicacionInput = document.getElementById('ubicacion');
+  if (!ubicacionInput || !window.google || !google.maps?.places) return;
+
+  googlePlacesAutocomplete = new google.maps.places.Autocomplete(ubicacionInput, {
+    componentRestrictions: { country: 'es' },
+    fields: ['address_components', 'formatted_address', 'geometry', 'name'],
+    types: ['(cities)']
+  });
+
+  googlePlacesAutocomplete.addListener('place_changed', () => {
+    const place = googlePlacesAutocomplete.getPlace();
+    if (!place || !place.geometry) {
+      setUbicacionHiddenFields();
+      return;
+    }
+
+    const extracted = extractAddressData(place);
+    const normalizedLocation = [extracted.municipio || place.name || '', extracted.provincia, extracted.pais]
+      .filter(Boolean)
+      .join(', ');
+
+    if (normalizedLocation) ubicacionInput.value = normalizedLocation;
+    setUbicacionHiddenFields(extracted);
+    googlePlacesSelected = true;
+  });
+};
+
 document.addEventListener('DOMContentLoaded', () => {
+  loadGooglePlacesScript();
 
   function mapearCampos(data) {
     const mapeo = {
       'origen-contacto': 'procedencia-contacto',
       'origen-otros-text': 'como-conocido-otros',
       'ubicacion': 'ubicacion-terreno',
+      'ubicacion-municipio': 'ubicacion-municipio',
+      'ubicacion-provincia': 'ubicacion-provincia',
+      'ubicacion-comunidad': 'ubicacion-comunidad',
+      'ubicacion-pais': 'ubicacion-pais',
+      'ubicacion-latitud': 'ubicacion-latitud',
+      'ubicacion-longitud': 'ubicacion-longitud'
     };
   
     const resultado = {};
@@ -30,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const interesOtrosContainer = document.getElementById('interes-otros-container');
   const terrenoSelect = document.getElementById('terreno');
   const ubicacionContainer = document.getElementById('ubicacion-container');
+  const ubicacionInput = document.getElementById('ubicacion');
   
   // Mostrar / ocultar "Otros" origen contacto
   origenSelect.addEventListener('change', () => {
@@ -61,7 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mostrar / ocultar ubicación terreno
   terrenoSelect.addEventListener('change', () => {
     ubicacionContainer.style.display = terrenoSelect.value === 'No' ? 'none' : 'block';
-    if (terrenoSelect.value === 'No') document.getElementById('ubicacion').value = '';
+    if (terrenoSelect.value === 'No') {
+      ubicacionInput.value = '';
+      setUbicacionHiddenFields();
+      googlePlacesSelected = false;
+    }
   });
   
   // Actualizar barra superior con nombre y fecha
@@ -71,6 +205,16 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   document.getElementById('nombre').addEventListener('input', updateNavBar);
   document.getElementById('fecha').addEventListener('input', updateNavBar);
+
+  if (ubicacionInput) {
+    ubicacionInput.addEventListener('input', () => {
+      if (googlePlacesSelected) {
+        googlePlacesSelected = false;
+        return;
+      }
+      setUbicacionHiddenFields();
+    });
+  }
   
   // Variable para controlar si se está guardando
 let isSaving = false;
