@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="crearficha.css" rel="stylesheet">
+  <meta name="google-maps-api-key" content="">
 </head>
 
 <body class="bg-light">
@@ -122,13 +123,26 @@
         <div class="mb-3" id="ubicacion-container">
           <label for="ubicacion" class="form-label">Ubicación del terreno</label>
           <div class="input-group">
-            <input type="text" class="form-control" name="ubicacion-terreno" id="ubicacion">
+            <input
+              type="text"
+              class="form-control"
+              name="ubicacion-terreno"
+              id="ubicacion"
+              placeholder="Ej: Vigo, Pontevedra"
+              autocomplete="off"
+            >
             <button class="btn btn-outline-secondary" type="button" id="btnAbrirMapaUbicacion" title="Buscar en Google Maps">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.44.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
               </svg>
             </button>
           </div>
+          <input type="hidden" name="ubicacion-municipio" id="ubicacion-municipio">
+          <input type="hidden" name="ubicacion-provincia" id="ubicacion-provincia">
+          <input type="hidden" name="ubicacion-comunidad" id="ubicacion-comunidad">
+          <input type="hidden" name="ubicacion-pais" id="ubicacion-pais">
+          <input type="hidden" name="ubicacion-latitud" id="ubicacion-latitud">
+          <input type="hidden" name="ubicacion-longitud" id="ubicacion-longitud">
         </div>
         <div class="mb-3"><label for="inversion" class="form-label">Inversión estimada (€)</label>
           <input type="number" class="form-control" name="number-419" id="inversion" step="5000" min="0">
