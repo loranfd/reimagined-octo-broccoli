@@ -1,0 +1,508 @@
+/* Fuente general y fondo */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f7fa;
+  padding-top: 80px; /* espacio para navbar fijo */
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2C3E50 !important;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.5);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1030;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+/* Link Volver */
+#volver-principal {
+  display: inline-flex;
+  align-items: center;
+  color: #ffffff;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+  margin-right: 0; /* Ajustado para acercar al título */
+}
+#volver-principal .icon-volver-circle {
+  fill: #3498DB;
+  transition: fill 0.25s ease;
+}
+#volver-principal .icon-volver-arrow {
+  stroke: #ffffff;
+  transition: stroke 0.25s ease;
+}
+#volver-principal:hover .icon-volver-circle {
+  fill: #2980B9;
+}
+#volver-principal:hover .icon-volver-arrow {
+  stroke: #ffffff;
+}
+#volver-principal:hover,
+#volver-principal:focus {
+  color: #2980B9;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Título navbar */
+.navbar-brand {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  user-select: none;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Contenedor nombre y fecha navbar */
+.navbar-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  user-select: none;
+}
+
+/* Texto blanco para nombre y fecha */
+#nav-nombre,
+#nav-fecha {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 16px 32px rgba(44, 62, 80, 0.3);
+  padding: 30px;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+/* Título principal */
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #34495E;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 30px;
+}
+
+/* Encabezados de sección */
+.section-header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #34495E;
+  border-bottom: 3px solid #BDC3C7;
+  padding-bottom: 10px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* Subtítulos */
+.subsection {
+  margin-bottom: 30px;
+  padding-left: 20px;
+  border-left: 4px solid #BDC3C7;
+  transition: border-color 0.3s ease;
+}
+.subsection:hover {
+  border-left-color: #3498DB;
+}
+.subsection h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #34495E;
+  margin-bottom: 15px;
+  white-space: nowrap;
+}
+
+/* Etiquetas formulario */
+.form-label {
+  font-weight: 600;
+  color: #34495E;
+  margin-bottom: 8px;
+  display: block;
+}
+
+
+/* Inputs y selects */
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #BDC3C7;
+  padding: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 100%; /* CAMBIAR de 400px a 100% */
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: #34495E;
+  background-color: #ECF0F1;
+}
+.form-control::placeholder {
+  color: #95A5A6;
+  opacity: 1;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #3498DB;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
+  outline: none;
+}
+
+/* Checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+  width: 100%;
+}
+.form-check {
+  display: flex;
+  align-items: center;
+}
+.form-check-input {
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1.8px solid #BDC3C7;
+  background-color: #ECF0F1;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.form-check-input:checked {
+  background-color: #3498DB;
+  border-color: #3498DB;
+}
+.form-check-label {
+  font-size: 1rem;
+  color: #34495E;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Botón guardar */
+.btn-success {
+  background-color: #2ECC71;
+  border: none;
+  font-size: 1.15rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 240px;
+}
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus {
+  background-color: #27AE60 !important;
+  transform: translateY(-2px);
+}
+
+/* Botón exportar */
+.btn-primary {
+  background-color: #3498DB;
+  border: none;
+  font-size: 1.15rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 240px;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: #2980B9 !important;
+  transform: translateY(-2px);
+}
+
+.btn-success i,
+.btn-primary i {
+  margin-right: 8px;
+}
+
+/* Tarjeta de exportación */
+.export-card {
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
+  border: 1px solid #dbe6ff;
+  box-shadow: 0 10px 22px rgba(52, 152, 219, 0.12);
+}
+
+.export-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.export-header h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.export-header p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.export-header i {
+  font-size: 2rem;
+  color: #3498db;
+}
+
+.export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.export-btn {
+  width: auto;
+  max-width: none;
+  flex: 1 1 220px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #3498db, #2d6cdf);
+  box-shadow: 0 8px 18px rgba(52, 152, 219, 0.25);
+}
+
+.export-btn:disabled {
+  opacity: 0.65;
+  box-shadow: none;
+}
+
+/* Alineación de botones y texto */
+.d-flex.align-items-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botón copiar referencia */
+.btn-copy {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-copy:hover {
+  opacity: 0.8;
+}
+
+/* Link mapa catastro */
+.link-catastro {
+  color: #3498DB;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.link-catastro:hover {
+  color: #2980B9;
+  text-decoration: underline;
+}
+
+
+/* Media queries */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 20px;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .section-header {
+    font-size: 1.5rem;
+  }
+  .subsection h3 {
+    font-size: 1.2rem;
+  }
+  .navbar-info {
+    flex-direction: row;
+    gap: 10px;
+  }
+  #nav-nombre,
+  #nav-fecha {
+    font-size: 0.9rem;
+  }
+  .navbar {
+    padding: 10px 15px;
+  }
+  .form-control,
+  .form-select,
+  .btn-success,
+  .btn-primary {
+    max-width: 100%;
+  }
+  .d-flex.gap-4 {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .export-actions {
+    flex-direction: column;
+  }
+}
+
+
+/* Altura uniforme en Llamada 01, Mail y Reunión */
+.form-uniforme {
+  height: 42px;         /* todos iguales en vertical */
+  min-height: 42px;
+  resize: none;         /* quita el redimensionado de textareas */
+}
+
+.form-uniforme.textarea {
+  height: auto;         /* para los textareas largos */
+  min-height: 80px;     /* y todos los cortos igual si quieres */
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+#volver-principal {
+  font-size: 21px;
+  color: #ffffff;
+  text-decoration: none;
+  user-select: none;
+  transition: color 0.2s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+#volver-principal .icon-volver-circle {
+  transition: fill 0.25s;
+}
+
+#volver-principal .icon-volver-arrow {
+  transition: stroke 0.25s;
+}
+
+#volver-principal:hover .icon-volver-circle {
+  fill: #2980B9; /* Adjusted to match hover */
+}
+
+#volver-principal:hover .icon-volver-arrow {
+  stroke: #ffffff; /* Keep white */
+}
+
+#volver-principal:hover,
+#volver-principal:focus {
+  color: #2980B9;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Estilos para input-group con botón de búsqueda */
+.input-group {
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-group .form-control {
+  flex: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  max-width: none;
+}
+
+.input-group .btn-outline-secondary {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+  padding: 10px 15px;
+  background-color: #ECF0F1;
+  border: 1px solid #BDC3C7;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.input-group .btn-outline-secondary:hover {
+  background-color: #3498DB;
+  border-color: #3498DB;
+}
+
+.input-group .btn-outline-secondary:hover svg {
+  fill: #ffffff;
+}
+
+/* Botón abrir mapa catastro */
+.btn-outline-primary {
+  background-color: transparent;
+  border: 1px solid #3498DB;
+  color: #3498DB;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #3498DB;
+  color: #ffffff;
+  border-color: #3498DB;
+}
+
+.btn-outline-primary:hover svg {
+  fill: #ffffff;
+}
+
+/* Textareas alargadas */
+textarea.form-control {
+  min-height: 80px;
+  resize: vertical;
+  max-width: 100%;
+}
+
+/* Inputs de una sola línea más cortos */
+input.form-control:not([type="date"]),
+.form-select {
+  max-width: 400px;
+}
+
+/* Excepciones para inputs que deben ser más anchos */
+#ubicacion,
+#referencia-catastral {
+  max-width: 100%;
+}

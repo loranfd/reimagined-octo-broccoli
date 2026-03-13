@@ -1,0 +1,1362 @@
+/* Importar fuentes modernas 2025 - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Variables CSS - Palette Optimizado */
+:root {
+  /* Colores Principales (Azul Marino y Cian) */
+  --primary-50: #e0f7ff;
+  --primary-500: #00bcd4;
+  --primary-600: #0097a7;
+  --primary-700: #007983;
+
+  /* Colores Neutros - Más oscuros para mejor contraste */
+  --gray-50: #f8f9fa;
+  --gray-100: #e9ecef;
+  --gray-200: #dee2e6;
+  --gray-300: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+
+  /* Colores Semánticos */
+  --success-500: #28a745;
+  --success-600: #218838;
+  --warning-500: #ffc107;
+  --danger-500: #dc3545;
+
+  /* Colores para recordatorios */
+  --recordatorio-futuro: #9ca3af;
+  --recordatorio-proximo: #c084fc;
+  --recordatorio-urgente: #7c3aed;
+  --recordatorio-fondo-futuro: #f3f4f6;
+  --recordatorio-fondo-proximo: #faf5ff;
+  --recordatorio-fondo-urgente: #ede9fe;
+
+  /* Fondos y Superficies */
+  --bg-base: #f4f7f9;
+  --surface-base: #ffffff;
+
+  /* Bordes */
+  --border-base: #e1e8ed;
+  --border-strong: #c2c9d1;
+
+  /* Sombras Modernas */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Espaciado y Radio */
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Transiciones Fluídas */
+  --transition-fast: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-hover: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Reset y Estilos Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--gray-800);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Layout */
+.container {
+  max-width: 1600px; /* Aumentado para más ancho */
+  margin: 40px auto;
+  padding: 0 20px;
+  min-height: 100vh;
+}
+
+/* Header */
+.titulo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: -0.05em;
+}
+
+/* Card - Estilo Elevado */
+.card {
+  background: var(--surface-base);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+}
+
+/* Controles Superiores */
+.card > .d-flex:first-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+}
+
+/* Grupos de Controles */
+.card > .d-flex:first-of-type > .d-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Badge de notificaciones más elegante */
+#badge-recordatorios {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  border-radius: 50%;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.4), 0 0 0 2px white;
+  animation: pulse-notification 2s infinite;
+}
+
+@keyframes pulse-notification {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Panel de notificaciones mejorado */
+#panelNotificaciones {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+/* Encabezado del panel mejorado */
+#panelNotificaciones > div:first-child {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 20px;
+}
+
+#panelNotificaciones > div:first-child span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* Paginación mejorada */
+#paginacion-controles {
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-sm);
+}
+
+.paginacion-numeros {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.paginacion-btn {
+  border: 1px solid #cbd5f5;
+  background: white;
+  color: #1f3a8a;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.paginacion-btn:hover:not(:disabled) {
+  background: #eef2ff;
+  border-color: #818cf8;
+  transform: translateY(-1px);
+}
+
+.paginacion-btn.active {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  border-color: #4f46e5;
+  box-shadow: 0 6px 12px rgba(79, 70, 229, 0.25);
+}
+
+.paginacion-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.paginacion-separator {
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.paginacion-ellipsis {
+  color: #94a3b8;
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+/* Tabs mejorados */
+.btn-group .btn {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all var(--transition-base);
+  border: 1px solid #e2e8f0;
+}
+
+.btn-group .btn.active {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 188, 212, 0.2);
+  border-color: var(--primary-500);
+}
+
+.btn-group .btn:not(.active) {
+  background: white;
+  color: #64748b;
+}
+
+.btn-group .btn:not(.active):hover {
+  background: #f8fafc;
+  color: #475569;
+}
+
+/* Items de notificación */
+.notificacion-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.notificacion-item:hover {
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.notificacion-item:last-child {
+  border-bottom: none;
+}
+
+/* Puntos de estado para recordatorios */
+.recordatorio-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  box-shadow: none;
+}
+
+.recordatorio-dot.futuro {
+  background: var(--recordatorio-futuro);
+}
+
+.recordatorio-dot.proximo {
+  background: var(--recordatorio-proximo);
+}
+
+.recordatorio-dot.urgente {
+  background: var(--recordatorio-urgente);
+}
+
+@keyframes glow-purple {
+  from { box-shadow: none; }
+  to { box-shadow: none; }
+}
+
+@keyframes glow-urgent {
+  from { box-shadow: none; }
+  to { box-shadow: none; }
+}
+
+/* Apartado de recordatorios rediseñado */
+.detalle-recordatorio {
+  background: linear-gradient(135deg, #fafbff, #f3f4f6);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.detalle-recordatorio h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detalle-recordatorio h4::before {
+  content: "⏰";
+  font-size: 18px;
+}
+
+/* Inputs mejorados para fecha y hora */
+.recordatorio-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.input-group-enhanced {
+  position: relative;
+}
+
+.input-group-enhanced input {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: all var(--transition-base);
+  width: 100%;
+}
+
+.input-group-enhanced input:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+  outline: none;
+}
+
+.input-group-enhanced label {
+  position: absolute;
+  left: 12px;
+  top: -8px;
+  background: white;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+/* Campo de motivo mejorado */
+.motivo-input {
+  margin-bottom: 16px;
+}
+
+.motivo-input input {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: all var(--transition-base);
+  width: 100%;
+}
+
+.motivo-input input:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+  outline: none;
+}
+
+/* Botones de recordatorio mejorados */
+.recordatorio-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-recordatorio {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-programar {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-programar:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-marcar-hecho {
+  background: linear-gradient(135deg, var(--success-500), var(--success-600));
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-marcar-hecho:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-postponer {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-postponer:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Check discreto y elegante */
+.check-hecho {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.check-hecho:hover {
+  border-color: var(--success-500);
+  transform: scale(1.05);
+}
+
+.check-hecho.checked {
+  background: var(--success-500);
+  border-color: var(--success-500);
+  color: white;
+}
+
+.check-hecho svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 3;
+}
+
+/* Aviso de recordatorio mejorado */
+.aviso-recordatorio {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0c4a6e;
+}
+
+.aviso-recordatorio.urgente {
+  background: #fef3c7;
+  border-color: #fcd34d;
+  color: #92400e;
+}
+
+.aviso-recordatorio.atrasado {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+/* --- Estilos para el botón de "Crear Nueva Ficha" --- */
+#btnCrearFicha {
+  background: var(--primary-500);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#btnCrearFicha:hover {
+  background: var(--primary-600);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px -2px rgba(0,0,0,0.1);
+}
+
+/* --- Estilos generales para otros botones (.btn) --- */
+.btn {
+  background: var(--primary-500);
+  border: none;
+  color: white;
+
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn:hover {
+  background: var(--primary-600);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px -2px rgba(0,0,0,0.1);
+}
+
+/* --- Estilos para el botón de "Ficha" de la tabla (separado) --- */
+.btn-detalles {
+  background: var(--gray-700);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.btn-detalles:hover {
+  background: var(--gray-900);
+  transform: translateY(-1px);
+}
+
+/* --- Estilos separados para el botón "Crear ficha" en tabla --- */
+.btn-crear-ficha {
+  background: var(--gray-600);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.btn-crear-ficha:hover {
+  background: var(--gray-800);
+  transform: translateY(-1px);
+}
+
+#filtroVivienda, #buscador {
+  background: var(--surface-base);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--gray-800);
+  transition: all var(--transition-base);
+  outline: none;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#filtroVivienda:focus, #buscador:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px var(--primary-50);
+}
+
+#buscador {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23adb5bd'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803a7.5 7.5 0 0 0 10.607 0Z' /%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 18px 18px;
+  padding-left: 40px;
+}
+
+/* Checkbox */
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-strong);
+  border-radius: 5px;
+  background: var(--surface-base);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.form-check-input:checked {
+  background: var(--primary-500);
+  border-color: var(--primary-500);
+}
+
+.form-check-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-700);
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+/* Tabla - Estilo Limpio */
+.table-responsive {
+  background: var(--surface-base);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+#tabla-contactos {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: transparent;
+  table-layout: auto;
+  min-width: 900px; /* Aumentado para más ancho */
+}
+
+/* Headers de la Tabla */
+#tabla-contactos thead th {
+  background: var(--gray-50);
+  color: var(--gray-600);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 2px solid var(--border-base);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+#tabla-contactos thead th:first-child {
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* Celdas del Cuerpo */
+#tabla-contactos tbody td {
+  padding: 14px 8px;
+  border-bottom: 1px solid var(--border-base);
+  vertical-align: middle;
+  text-align: center;
+  transition: all var(--transition-fast);
+  color: var(--gray-700);
+}
+
+#tabla-contactos tbody td:first-child {
+  text-align: left;
+  padding-left: 20px;
+  font-weight: 500;
+}
+
+/* Hover de la Fila - NUEVO EFECTO */
+#tabla-contactos tbody tr {
+  transition: transform var(--transition-hover), box-shadow var(--transition-hover);
+}
+
+#tabla-contactos tbody tr:hover {
+  background: var(--primary-50);
+  transform: translateY(-3px); /* Efecto de elevación */
+  box-shadow: var(--shadow-lg); /* Sombra más pronunciada */
+  position: relative;
+  z-index: 10;
+}
+
+/* Botones de Llamado y Respondido */
+.td-llamado .btn, .td-respondido .btn {
+  font-size: 8px;
+  font-weight: 600;
+  padding: 2px 4px;
+  min-width: 20px;
+  height: 22px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.td-llamado .btn:hover, .td-respondido .btn:hover {
+  transform: scale(1.05);
+}
+
+.td-llamado, .td-respondido {
+  padding: 14px 4px; /* Reduced for closeness */
+}
+
+.btn-success { background: var(--success-500); }
+.btn-secondary { background: var(--gray-200); color: var(--gray-700); }
+.btn-danger { background: var(--danger-500); }
+
+/* Notas y Botones */
+.td-notas .form-control-sm {
+  font-size: 12px;
+  padding: 8px 10px;
+  height: 34px;
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  background: var(--surface-base);
+  flex: 1;
+  min-width: 90px;
+  transition: all var(--transition-fast);
+}
+
+.td-notas .btn-sm {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  background: var(--primary-500);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.td-notas .btn-sm:hover {
+  background: var(--primary-600);
+  transform: scale(1.05);
+}
+
+/* Estrellas de Prioridad */
+.td-prioridad span {
+  font-size: 1.6em;
+  color: var(--gray-300);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  line-height: 1;
+}
+
+.td-prioridad span.activa {
+  color: var(--warning-500);
+}
+
+.td-prioridad span:hover {
+  color: var(--warning-500);
+  transform: scale(1.2);
+}
+
+/* Botones de Documentación y Detalles */
+.td-seguimiento button {
+  width: 34px;
+  height: 20px;
+  border-radius: 50%; /* Botón circular */
+  border: 1px solid var(--border-base);
+  background: var(--surface-base);
+  color: var(--gray-600);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.td-seguimiento button:hover {
+  background: var(--gray-100);
+  transform: translateY(-2px);
+}
+
+.btn-detalles, button[data-toggle="detalle"] {
+  color: var(--primary-600) !important;
+  font-weight: 600;
+  font-size: 12px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.btn-detalles:hover {
+  background: var(--primary-100);
+  transform: translateY(-1px);
+}
+
+/* Fila de Detalles Expandida */
+.fila-detalle td {
+  padding: 30px !important;
+  background: transparent;
+  border-top: 2px solid var(--primary-500);
+  height: auto !important;
+  transition: all var(--transition-base);
+}
+
+.detalle-contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+/* Botón detalles - sin fondo */
+.btn-detalles-custom {
+  background: transparent !important;
+  border: none !important;
+  color: var(--gray-700) !important;
+  padding: 4px 8px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.btn-detalles-custom:hover {
+  background: var(--gray-100) !important;
+  color: var(--gray-900) !important;
+}
+
+/* Botón ficha - tamaño medio */
+.btn-ficha-custom {
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+
+/* Botón eliminar - más pequeño */
+.btn-eliminar-custom {
+  padding: 4px 8px !important;
+  font-size: 11px !important;
+}
+
+
+/* Juntar botones de Llamado y Respondido */
+.td-llamado, .td-respondido {
+  padding: 6px 1px !important; /* Reducido padding lateral */
+}
+
+/* Controlar márgenes/padding de otras celdas específicas */
+.td-notas {
+  padding: 14px 4px !important;
+}
+
+.td-seguimiento {
+  padding: 12px 4px !important;
+}
+
+.td-prioridad {
+  padding: 14px 4px !important;
+}
+
+.td-estado {
+  padding: 14px 6px !important;
+}
+
+/* O si quieres cambiar todas las celdas de la tabla a la vez */
+#tabla-contactos tbody td {
+  padding: 14px 4px !important; /* Reduce padding lateral general */
+}
+
+/* Mantener padding izquierdo solo en primera columna (nombre) */
+#tabla-contactos tbody td:first-child {
+  padding-left: 20px !important;
+}
+
+
+/* Columnas más pequeñas - usando nth-child para seleccionar por posición */
+#tabla-contactos th:nth-child(2), /* Tipo Vivienda */
+#tabla-contactos td:nth-child(2) {
+  width: 120px;
+  max-width: 120px;
+  padding: 12px 4px !important;
+  font-size: 12px;
+}
+#tabla-contactos tbody td:nth-child(4) {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+
+#tabla-contactos th:nth-child(4), /* Terreno/Ubicación */
+#tabla-contactos td:nth-child(4) {
+  width: 140px;
+  max-width: 140px;
+  padding: 12px 4px !important;
+  font-size: 13px;
+  white-space: normal !important; /* Permite salto de línea */
+  word-wrap: break-word !important; /* Rompe palabras largas */
+  overflow: visible !important; /* Muestra todo el contenido */
+  text-overflow: clip !important; /* Quita los puntos suspensivos */
+  line-height: 1.3 !important; /* Mejora la legibilidad */
+}
+
+#tabla-contactos th:nth-child(5), /* Inversión */
+#tabla-contactos td:nth-child(5) {
+  width: 100px;
+  max-width: 100px;
+  padding: 12px 4px !important;
+  font-size: 12px;
+}
+
+
+
+/* ====================== CSS PARA CONTACTOS ELIMINADOS ====================== */
+
+/* Estilo para filas eliminadas - aspecto tachado y gris */
+tr.eliminado {
+  background-color: var(--gray-50) !important;
+  opacity: 0.7;
+  text-decoration: line-through;
+  color: var(--gray-600) !important;
+}
+
+tr.eliminado td {
+  color: var(--gray-600) !important;
+  background-color: transparent !important;
+}
+
+/* Estilo específico para el badge "ELIMINADO" */
+tr.eliminado .badge.bg-danger {
+  background-color: var(--danger-500) !important;
+  color: white !important;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none !important;
+}
+
+/* Botón restaurar */
+.btn-restaurar {
+  background-color: var(--success-500) !important;
+  border-color: var(--success-500) !important;
+  color: white !important;
+  padding: 0.375rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.btn-restaurar:hover {
+  background-color: var(--success-600) !important;
+  border-color: #146c43 !important;
+}
+
+/* Botón eliminar definitivo */
+.btn-eliminar-definitivo {
+  background-color: var(--danger-500) !important;
+  border-color: var(--danger-500) !important;
+  color: white !important;
+  padding: 0.375rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.btn-eliminar-definitivo:hover {
+  background-color: #bb2d3b !important;
+  border-color: #b02a37 !important;
+}
+
+/* Ajuste extra para el botón eliminar normal ya existente */
+.btn-eliminar-custom {
+  background-color: var(--danger-500) !important;
+  border-color: var(--danger-500) !important;
+  color: white !important;
+}
+
+.btn-eliminar-custom:hover {
+  background-color: #bb2d3b !important;
+  border-color: #b02a37 !important;
+}
+
+/* Mejorar la apariencia del toggle "Ver eliminados" */
+.form-check-input:checked {
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
+}
+
+/* Espaciado para los controles de filtros */
+.d-flex.justify-content-end.align-items-center.gap-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Estilo para campos deshabilitados en filas eliminadas */
+tr.eliminado input[disabled],
+tr.eliminado button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Asegurar que el texto tachado se aplique a todos los elementos */
+tr.eliminado * {
+  text-decoration: inherit;
+}
+
+/* Excepción para botones y badges que no deben tacharse */
+tr.eliminado .btn,
+tr.eliminado .badge {
+  text-decoration: none !important;
+}
+
+
+
+
+
+
+
+
+/* Media Queries para pantallas grandes */
+@media (min-width: 1800px) {
+  body {
+    font-size: 16px;
+  }
+  .container {
+    max-width: 1800px; /* Aumentado de nuevo para pantallas gigantes */
+  }
+  .titulo {
+    font-size: 2.5rem;
+  }
+  #tabla-contactos {
+    font-size: 14px;
+    min-width: 1500px;
+  }
+  #tabla-contactos thead th {
+    font-size: 13px;
+    padding: 16px 12px;
+  }
+  #tabla-contactos tbody td {
+    padding: 16px 12px;
+  }
+  .td-prioridad span {
+    font-size: 1.8rem;
+  }
+  .fila-detalle td {
+    padding: 40px !important;
+  }
+}
+
+/* Media Queries para pantallas más pequeñas (priorizando tamaño de letra) */
+@media (max-width: 1200px) {
+  body {
+    font-size: 15px; /* Mantener legible */
+  }
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  #tabla-contactos {
+    font-size: 14px;
+    min-width: 1100px; /* Reducido para adaptación */
+  }
+  #tabla-contactos thead th {
+    font-size: 11px;
+    padding: 10px 6px;
+  }
+  #tabla-contactos tbody td {
+    padding: 12px 6px;
+  }
+  .btn, #btnCrearFicha, .btn-detalles, .btn-crear-ficha {
+    padding: 8px 12px;
+    font-size: 13px; /* Prioridad a letra */
+  }
+  .td-llamado .btn, .td-respondido .btn {
+    padding: 3px 6px;
+    font-size: 12px;
+    height: 20px;
+  }
+  .td-prioridad span {
+    font-size: 1.4em;
+  }
+  .fila-detalle td {
+    padding: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 13px; /* Ligeramente reducido, pero legible */
+  }
+  #tabla-contactos {
+    font-size: 12px;
+    min-width: 800px;
+  }
+  .titulo {
+    font-size: 1.8rem;
+  }
+  .btn, #btnCrearFicha, .btn-detalles, .btn-crear-ficha {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .td-llamado .btn, .td-respondido .btn {
+    padding: 2px 4px;
+    font-size: 11px;
+    height: 18px;
+  }
+}
+
+
+/* Hacer columna de notas más ancha */
+.td-notas {
+  min-width: 280px;
+  max-width: 300px;
+  width: 25%;
+}
+
+.notas-textarea {
+  min-height: 80px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  padding: 8px 10px;
+  border: 2px solid #e0e7ff;
+  border-radius: 8px;
+  background: #fafbff;
+  transition: all 0.3s ease;
+  resize: vertical;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  width: 100%;
+}
+
+.notas-textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.notas-textarea::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.btn-guardar-notas {
+  align-self: stretch;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+@keyframes prioridadPulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0px transparent);
+  }
+  30% {
+    transform: scale(1.5);
+    filter: brightness(1.8) drop-shadow(0 0 12px #ffc107);
+  }
+  60% {
+    transform: scale(1.2);
+    filter: brightness(1.5) drop-shadow(0 0 8px #ffc107);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0px transparent);
+  }
+}
+
+
+/* ====================== ESTILOS PARA FILTROS ADICIONALES ====================== */
+
+/* Estilo para encabezado filtrable de Documentación */
+.filtrable-doc {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.filtrable-doc:hover {
+  background-color: var(--primary-50) !important;
+  transform: scale(1.02);
+}
+
+.filtrable-doc.filtro-activo {
+  background-color: var(--primary-500) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
+}
+
+.filtrable-doc.filtro-activo::after {
+  content: " ✓";
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+/* Estilos para switches de filtros */
+#toggleViabilidad:checked {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+#toggleEliminados:checked {
+  background-color: var(--primary-500);
+  border-color: var(--primary-500);
+}
+
+/* Animación suave para filas filtradas */
+#tabla-contactos tbody tr {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#tabla-contactos tbody tr.filtrado-oculto {
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
+}
+
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semitransparente */
+  color: #333; /* Gris oscuro */
+  border: none;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.scroll-top-btn:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.scroll-top-btn svg {
+  stroke: #333; /* Flecha gris oscuro */
+  transition: transform 0.3s ease;
+}
+
+.scroll-top-btn:hover svg {
+  transform: translateY(-3px);
+}
+
+
+/* Indicador visual para columnas ordenables */
+th.sortable-ciclico:hover,
+th.filtrable-doc:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+th.sortable-ciclico,
+th.filtrable-doc {
+  user-select: none;
+  position: relative;
+}
+
+/* Animación sutil al reordenar */
+#tabla-contactos tbody tr {
+  transition: transform 0.3s ease;
+}
+
+/* ==================== PAGINACIÓN MEJORADA ==================== */
+#paginacion-controles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0 20px;
+  flex-wrap: wrap;
+}
+
+.btn-paginacion {
+  padding: 10px 22px;
+  border: 2px solid #6c5ce7;
+  background: white;
+  color: #6c5ce7;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-paginacion:hover:not(:disabled) {
+  background: #6c5ce7;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-paginacion:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-paginacion-num {
+  min-width: 46px;
+  height: 46px;
+  border: 2px solid #dee2e6;
+  background: white;
+  color: #495057;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-paginacion-num:hover {
+  border-color: #6c5ce7;
+  background: #f8f9fa;
+}
+
+.btn-paginacion-num.active {
+  background: #6c5ce7;
+  color: white;
+  border-color: #6c5ce7;
+  box-shadow: 0 6px 15px rgba(108, 92, 231, 0.4);
+  transform: scale(1.1);
+}
+
+.paginacion-separador {
+  color: #adb5bd;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 0 8px;
+}

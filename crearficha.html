@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Ficha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Fonts: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="crearficha.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar fixed-top d-flex align-items-center">
+  <div class="container-fluid d-flex align-items-center">
+    <a href="index.html" id="volver-principal" aria-label="Volver a página principal">
+      <svg class="icon-volver" width="32" height="32" viewBox="0 0 32 32" style="margin-right:6px">
+        <circle class="icon-volver-circle" cx="16" cy="16" r="16" fill="#ffffff"/>
+        <path class="icon-volver-arrow" d="M18 10l-6 6 6 6" stroke="#849901" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <span class="navbar-brand ms-3">Crear Ficha</span>
+    <div class="d-flex align-items-center ms-auto">
+      <span class="navbar-text me-3" id="nav-nombre">Nombre: -</span>
+      <span class="navbar-text" id="nav-fecha">Fecha: -</span>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5 mt-5">
+  <h1 class="title mb-4">Crear Ficha Personal</h1>
+
+  <form id="form-ficha">
+    <input type="hidden" name="ID" id="ficha-id">
+
+    <!-- Nombre y fecha -->
+    <div class="d-flex flex-wrap mb-4 align-items-end gap-4">
+      <div class="flex-grow-1">
+        <label for="nombre" class="form-label">Nombre/s</label>
+        <input type="text" class="form-control" name="your-name" id="nombre" required>
+      </div>
+      <div>
+        <label for="fecha" class="form-label">Fecha de contacto</label>
+        <input type="date" class="form-control" name="Fecha" id="fecha">
+      </div>
+    </div>
+
+<!-- Nuevo campo: Interés -->
+<div class="mb-3">
+  <label for="interes" class="form-label">Interés</label>
+  <select class="form-select" name="interes" id="interes">
+    <option value="">Seleccione...</option>
+    <option value="Villas isla de Cortegada">Villas isla de Cortegada</option>
+    <option value="Vivienda normal">Vivienda normal</option>
+    <option value="Otros">Otros</option>
+  </select>
+  <div id="interes-otros-container" style="display:none; margin-top: 0.5rem;">
+    <input type="text" class="form-control" name="interes-otros" id="interes-otros" placeholder="Especificar otros">
+  </div>
+</div>
+
+
+    <!-- Procedencia del contacto -->
+    <div class="mb-3">
+      <label for="origen-contacto" class="form-label">¿De dónde procede el contacto?</label>
+      <select class="form-select" name="origen-contacto" id="origen-contacto" required>
+        <option value="">Seleccionar</option>
+		 <option value="Teléfono">Teléfono</option>
+        <option value="Idealista">Idealista</option>
+        <option value="Publicidad">Publicidad</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Otros">Otros</option>
+      </select>
+      <div class="mt-2" id="origen-otros-container" style="display:none;">
+        <input type="text" class="form-control" name="origen-otros-text" id="origen-otros-text" placeholder="Especificar origen">
+      </div>
+    </div>
+
+    <!-- Email y teléfono -->
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" name="your-email" id="correo" >
+    </div>
+    <div class="mb-3">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input type="tel" class="form-control" name="tel-686" id="telefono" >
+    </div>
+
+    <!-- Vivienda interesada -->
+    <div class="mb-3" id="vivienda-interesada-container" style="display:none;">
+      <label for="vivienda-interesada" class="form-label">Vivienda en la que está interesado</label>
+      <select class="form-select" name="vivienda-interesada" id="vivienda-interesada">
+        <option value="">Seleccionar</option>
+        <option value="Vivienda 03">Vivienda 03</option>
+        <option value="Vivienda 04">Vivienda 04</option>
+        <option value="Vivienda 05">Vivienda 05</option>
+        <option value="Promoción general">Promoción general</option>
+      </select>
+    </div>
+
+    <!-- Bloque que se oculta en modo Idealista -->
+    <div id="form-completo">
+
+      <!-- CUALIDADES -->
+      <h2 class="section-header">DATOS VÍA WEB O VÍA MAIL</h2>
+      
+      <!-- POSIBILIDADES -->
+      <div class="subsection">
+        <h3>A medida de tus posibilidades</h3>
+        <div class="mb-3"><label for="terreno" class="form-label">Dispones de terreno</label>
+          <select class="form-select" name="terreno" id="terreno">
+            <option value="">Seleccionar</option>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="mb-3" id="ubicacion-container">
+          <label for="ubicacion" class="form-label">Ubicación del terreno</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="ubicacion-terreno" id="ubicacion">
+            <button class="btn btn-outline-secondary" type="button" id="btnAbrirMapaUbicacion" title="Buscar en Google Maps">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.44.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="mb-3"><label for="inversion" class="form-label">Inversión estimada (€)</label>
+          <input type="number" class="form-control" name="number-419" id="inversion" step="5000" min="0">
+        </div>
+        <div class="mb-3"><label for="plazo" class="form-label">Plazo o fecha deseada</label>
+          <input type="date" class="form-control" name="date-33" id="plazo">
+        </div>
+      </div>
+
+      <!-- NECESIDADES -->
+      <div class="subsection">
+        <h3>A medida de tus necesidades</h3>
+        <div class="mb-3"><label for="plantas" class="form-label">Número de plantas</label><input type="number" class="form-control" name="number-420" id="plantas"></div>
+        <div class="mb-3"><label for="superficie" class="form-label">Superficie de la vivienda</label><input type="number" class="form-control" name="number-421" id="superficie" step="any"></div>
+        <div class="mb-3"><label for="dormitorios" class="form-label">Número de dormitorios</label><input type="number" class="form-control" name="number-422" id="dormitorios"></div>
+        <div class="mb-3"><label for="banos" class="form-label">Número de baños</label><input type="number" class="form-control" name="number-423" id="banos"></div>
+      </div>
+
+<!-- LLAMADA 01 -->
+
+<h2 class="section-header mt-4">LLAMADA 01</h2>
+<div class="subsection p-3 border rounded bg-white shadow-sm mb-4">
+  <!-- Primera fila: fecha + como-conocido -->
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label for="fecha-llamada" class="form-label">Fecha de llamada</label>
+      <input type="date" class="form-control" name="fecha-llamada" id="fecha-llamada">
+    </div>
+    <div class="col-md-8">
+      <label for="como-conocido" class="form-label">¿Cómo nos has conocido?</label>
+      <select class="form-select" name="como-conocido" id="como-conocido">
+        <option value="">Seleccionar</option>
+        <option value="Redes sociales">Redes sociales</option>
+        <option value="Google">Google</option>
+        <option value="Prensa">Prensa</option>
+        <option value="Cliente">Cliente</option>
+        <option value="Otros">Otros</option>
+      </select>
+      <div class="mt-2" id="como-conocido-otros-container" style="display: none;">
+        <input type="text" class="form-control" name="como-conocido-otros" id="como-conocido-otros" placeholder="Especificar cómo nos has conocido">
+      </div>
+    </div>
+  </div>
+
+  <!-- Distribución, garaje, piscina -->
+  <div class="row g-3 mt-3">
+    <div class="col-md-4">
+      <label for="distribucion-dia" class="form-label">Distribución zona de día</label>
+      <select class="form-select" name="distribucion-dia" id="distribucion-dia">
+        <option value="">Seleccionar</option>
+        <option value="Comedor en la cocina">Comedor en la cocina</option>
+        <option value="Comedor en el salón">Comedor en el salón</option>
+        <option value="Espacio diáfano K-C-S (flexible)">Espacio diáfano K-C-S (flexible)</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="garaje" class="form-label">Garaje</label>
+      <select class="form-select" name="garaje" id="garaje">
+        <option value="">Seleccionar</option>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+		 <option value="Más adelante">Más adelante</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="piscina" class="form-label">Piscina</label>
+      <select class="form-select" name="piscina" id="piscina">
+        <option value="">Seleccionar</option>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+        <option value="Más adelante">Más adelante</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Estancia adicional -->
+  <div class="row g-3 mt-3">
+    <div class="col-12">
+      <label for="estancia-adicional" class="form-label">Estancia adicional</label>
+      <textarea class="form-control" name="estancia-adicional" id="estancia-adicional" rows="2" ></textarea>
+    </div>
+  </div>
+
+  <!-- Aspectos urbanísticos en 2 columnas -->
+  <h3 class="mt-4">Aspectos urbanísticos</h3>
+  <div class="row g-3 mt-1">
+    <div class="col-md-6">
+      <label for="superficie-parcela" class="form-label">Superficie de la parcela (m², pendiente?)</label>
+      <input type="text" class="form-control" name="superficie-parcela" id="superficie-parcela">
+    </div>
+    <div class="col-md-6">
+      <label for="edificabilidad" class="form-label">Edificabilidad</label>
+      <input type="text" class="form-control" name="edificabilidad" id="edificabilidad">
+    </div>
+    <div class="col-md-6">
+      <label for="ocupacion" class="form-label">Ocupación</label>
+      <input type="text" class="form-control" name="ocupacion" id="ocupacion">
+    </div>
+    <div class="col-md-6">
+  <label class="form-label">Referencia catastral (R.C.)</label>
+  <div class="d-flex align-items-center gap-2">
+    <input id="referencia-catastral" name="referencia-catastral" class="form-control" type="text">
+    <div id="btnCopiarRef" class="btn-copy" title="Copiar referencia"></div>
+  </div>
+  <a id="btnAbrirMapa" class="link-catastro mt-2 d-block" href="#">Abrir mapa del Catastro</a>
+</div>
+
+  </div>
+</div>
+
+<!-- MAIL 01 -->
+<h2 class="section-header mt-4">MAIL 01</h2>
+<div class="subsection p-3 border rounded bg-white shadow-sm mb-4">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label for="fecha-mail" class="form-label">Fecha de mail</label>
+      <input type="date" class="form-control" name="fecha-mail" id="fecha-mail">
+    </div>
+    <div class="col-md-8">
+      <label for="info-enviada" class="form-label">Detallar información enviada</label>
+      <textarea class="form-control" name="info-enviada" id="info-enviada" rows="2" ></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- REUNIÓN ESTUDIOS PREVIOS -->
+<h2 class="section-header mt-4">ESTUDIO DE VIABILIDAD</h2>
+
+<div class="subsection p-3 border rounded bg-white shadow-sm mb-4">
+
+  <div class="row g-3 mb-3">
+    <div class="col-md-4">
+      <label for="estudio-viabilidad" class="form-label">Estudio de viabilidad</label>
+      <select class="form-select" name="estudio-viabilidad" id="estudio-viabilidad">
+        <option value="">Seleccionar</option>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="fecha-reunion" class="form-label">Fecha de reunión</label>
+      <input type="date" class="form-control" name="fecha-reunion" id="fecha-reunion">
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="imprescindible" class="form-label">Imprescindible</label>
+    <textarea class="form-control w-100" name="imprescindible" id="imprescindible" rows="2"></textarea>
+  </div>
+
+</div>
+
+
+
+
+    </div> <!-- FIN form-completo -->
+
+    <!-- NOTAS -->
+    <h2 class="section-header mt-4">Notas</h2>
+    <div class="subsection p-3 border rounded bg-white shadow-sm mb-4">
+      <div class="mb-3">
+        <label for="Notas" class="form-label">Notas adicionales</label>
+        <textarea class="form-control" name="Notas" id="Notas" rows="6" ></textarea>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="d-grid gap-2 my-3">
+      <button type="button" id="guardarDatos" class="btn btn-success"><i class="bi bi-save"></i> Guardar</button>
+    </div>
+    <div class="export-card">
+      <div class="export-header">
+        <div>
+          <h3>Exportar ficha</h3>
+          <p>Descarga la ficha en Word o la carpeta con adjuntos.</p>
+        </div>
+        <i class="bi bi-file-earmark-text"></i>
+      </div>
+      <div class="export-actions">
+        <button type="button" id="exportarWord" class="btn btn-primary export-btn" disabled>
+          <i class="bi bi-download"></i> Exportar a Word
+        </button>
+        <button id="exportarZip" class="btn btn-primary export-btn">
+          <i class="bi bi-folder-symlink"></i> Exportar carpeta
+        </button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://unpkg.com/docx@8.0.0/build/index.js"></script>
+<script src="crearficha.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!-- dashboard.html (actualizado con nuevos elementos para filtros y gráfico adicional) -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Análisis de Contactos</title>
+  <link rel="stylesheet" href="dashboard.css">  <!-- Renómbralo a style.css si lo prefieres -->
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Loading -->
+    <div id="loading" class="loading-screen">
+      <div class="spinner"></div>
+      <p>Cargando datos...</p>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div id="dashboard-content" style="display: none;">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div>
+          <h1>📊 Dashboard de Contactos</h1>
+          <p>Análisis completo de tus leads y conversiones</p>
+        </div>
+        <button onclick="window.close()" class="btn-back">← Volver</button>
+      </header>
+
+      <!-- Filtros globales/mensuales/rango (nuevo) -->
+      <div class="filter-section" style="background: white; padding: 1rem; border-radius: 12px; margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+        <select id="filtro-tipo" class="form-select" style="width: 200px;">
+          <option value="global">Global</option>
+          <option value="mensual">Mensual</option>
+          <option value="rango">Rango de fechas</option>
+        </select>
+        <select id="filtro-mes" style="width: 200px; display: none;">
+          <!-- Se poblará dinámicamente -->
+        </select>
+        <input type="date" id="filtro-inicio" style="display: none;">
+        <input type="date" id="filtro-fin" style="display: none;">
+        <button id="aplicar-filtro" class="btn-back" style="background: #667eea; color: white;">Aplicar</button>
+      </div>
+
+      <!-- KPIs principales -->
+      <div class="kpi-grid">
+        <div class="kpi-card blue">
+          <div class="kpi-content">
+            <div>
+              <p class="kpi-label">Total Contactos</p>
+              <p class="kpi-value" id="kpi-total">0</p>
+            </div>
+            <div class="kpi-icon">👥</div>
+          </div>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-content">
+            <div>
+              <p class="kpi-label">Vivienda Normal</p>
+              <p class="kpi-value" id="kpi-normal">0</p>
+            </div>
+            <div class="kpi-icon">🏠</div>
+          </div>
+        </div>
+
+        <div class="kpi-card purple">
+          <div class="kpi-content">
+            <div>
+              <p class="kpi-label">Villas Cortegada</p>
+              <p class="kpi-value" id="kpi-villas">0</p>
+            </div>
+            <div class="kpi-icon">🏖️</div>
+          </div>
+        </div>
+
+        <div class="kpi-card orange">
+          <div class="kpi-content">
+            <div>
+              <p class="kpi-label">Ubicaciones</p>
+              <p class="kpi-value" id="kpi-ubicaciones">0</p>
+            </div>
+            <div class="kpi-icon">📍</div>
+          </div>
+        </div>
+      </div>
+
+  <!-- Gráficos principales (Distribución y Procedencia en grid) -->
+<div class="charts-grid">
+  <!-- Distribución por tipo -->
+  <div class="chart-card">
+    <h3>📊 Distribución por Tipo de Vivienda</h3>
+    <div id="chart-tipos"></div>
+  </div>
+
+  <!-- Procedencia -->
+  <div class="chart-card">
+    <h3>📈 Procedencia de Contactos</h3>
+    <div id="chart-procedencia"></div>
+  </div>
+
+  <!-- Contactos por Tiempo (debajo, full width) -->
+<!-- Contactos por Tiempo (debajo, full width) -->
+<div class="chart-card" style="margin-top: 2rem; grid-column: 1 / 3;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h3 style="margin: 0;">📅 Contactos por Tiempo</h3>
+    <div id="periodo-info" style="font-size: 1.1rem; font-weight: 600; color: #667eea;">
+      <!-- Se llenará dinámicamente -->
+    </div>
+  </div>
+  <div id="chart-tiempo"></div>
+</div>
+</div>
+
+<!-- Embudo de Conversión (movido fuera de charts-grid) -->
+<div class="embudo-card">
+  <h3>💰 Embudo de Conversión - Villas Isla de Cortegada</h3>
+  <div class="embudo-inputs">
+    <div class="input-group">
+      <label>Clics Totales</label>
+      <input type="number" id="input-clics" placeholder="Ej: 1000">
+    </div>
+    <div class="input-group">
+      <label>CPC (€)</label>
+      <input type="number" step="0.01" id="input-cpc" placeholder="Ej: 0.50">
+    </div>
+    <div class="input-group">
+      <label>Fecha Inicio</label>
+      <input type="date" id="input-fecha-inicio">
+    </div>
+    <div class="input-group">
+      <label>Fecha Fin</label>
+      <input type="date" id="input-fecha-fin">
+    </div>
+  </div>
+  <button id="btn-calcular-embudo" style="background: white; border: 2px solid #e2e8f0; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; color: #4a5568; margin-top: 1rem;">Calcular Conversión</button>
+
+  <div id="embudo-resultados" class="embudo-resultados" style="display: none;">
+    <div class="embudo-metric">
+      <p class="embudo-label">Clics</p>
+      <p class="embudo-value" id="embudo-clics">0</p>
+    </div>
+    <div class="embudo-metric">
+      <p class="embudo-label">Contactos</p>
+      <p class="embudo-value" id="embudo-contactos">0</p>
+    </div>
+    <div class="embudo-metric">
+      <p class="embudo-label">Conversión</p>
+      <p class="embudo-value" id="embudo-conversion">0%</p>
+    </div>
+    <div class="embudo-metric">
+      <p class="embudo-label">Costo Total</p>
+      <p class="embudo-value" id="embudo-costo-total">0€</p>
+    </div>
+    <div class="embudo-metric">
+      <p class="embudo-label">Costo/Contacto</p>
+      <p class="embudo-value" id="embudo-costo-contacto">0€</p>
+    </div>
+  </div>
+
+  <!-- Gráfica bonita para embudo (barra simple) -->
+  <div id="embudo-grafica" style="margin-top: 2rem; display: none;">
+    <div class="progress-item">
+      <div class="progress-header">
+        <span>Tasa de Conversión</span>
+        <span id="embudo-porcentaje">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar green" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- Mapa de ubicaciones (simulado con cards, como ya estaba; para interactivo real, usa iframe de Google Maps si necesitas, pero sin frameworks) -->
+      <div class="chart-card">
+        <h3>🗺️ Ubicaciones de Interés - Vivienda Normal</h3>
+        <div id="mapa-ubicaciones" class="mapa-grid"></div>
+        <!-- Opcional: Iframe simulado de Google Maps (reemplaza con tu embed si quieres marcadores dinámicos) -->
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0; margin-top: 1rem;" allowfullscreen="" loading="lazy"></iframe> -->
+		<!-- Notas y Exportación -->
+      <div class="notas-export-section" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); margin-top: 2rem;">
+        <div style="display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap;">
+          <button id="btn-toggle-nota" class="btn-nota">📝 Añadir nota o comentario</button>
+          <button id="btn-exportar" class="btn-exportar">⬇️ Exportar a CSV / Excel</button>
+        </div>
+        <div id="nota-container" style="display: none; margin-top: 1.5rem;">
+          <textarea id="nota-texto" placeholder="Escribe tu nota o comentario aquí..." style="width: 100%; min-height: 120px; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 12px; font-family: inherit; font-size: 1rem; resize: vertical;"></textarea>
+        </div>
+      </div>
+      </div>
+	  
+
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>  <!-- Renómbralo a script.js si lo prefieres -->
+</body>
+</html>

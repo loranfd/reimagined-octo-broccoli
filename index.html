@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contactos Recibidos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<nav class="navbar navbar-light bg-light" style="position:sticky; top:0; z-index:1200; border-bottom:1px solid #e5e7eb;">
+  <div class="container-fluid">
+    <div class="row w-100 align-items-center gy-2">
+      <div class="col-auto d-flex align-items-center gap-2">
+  <button id="btnCrearFicha" class="btn btn-primary btn-sm">Crear Nueva Ficha</button>
+
+
+<button id="btnDashboard" class="btn btn-success btn-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+  📊 Dashboard
+</button>
+</div>
+      <div class="col text-center" id="navbar-center-title">
+        <div class="h5 m-0" style="font-weight:600; letter-spacing:.2px; display:inline-flex; align-items:center; gap:8px;">
+          <span>📋</span>
+          <span>Contactos Recibidos</span>
+        </div>
+      </div>
+      <div class="col-auto" style="position:relative;">
+        <i class="bi bi-bell notification-bell" style="font-size:1.6rem; cursor:pointer; position:relative; color:#0f172a;" title="Recordatorios">
+          <span id="badge-recordatorios" style="position:absolute;top:-6px;right:-6px;background:#ef4444;color:#fff;border-radius:999px;padding:2px 7px;font-size:1.05rem;display:none;line-height:1.1;font-weight:600;font-family:'Segoe UI',Arial,sans-serif;"></span>
+        </i>
+        <div id="panelNotificaciones" style="display:none; position:fixed; right:16px; top:56px; background:#fff; border:1px solid #e5e7eb; width:360px; z-index:2100; box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); border-radius:10px; overflow:hidden;">
+          <div style="font-weight:600; display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid #f1f5f9; background:#f8fafc;">
+            <span>Recordatorios</span>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Filtro">
+              <button id="tabDue" type="button" class="btn btn-outline-primary active" style="padding:2px 8px;">Pendientes</button>
+              <button id="tabUpcoming" type="button" class="btn btn-outline-secondary" style="padding:2px 8px;">Próximos 7d</button>
+            </div>
+          </div>
+          <div id="notificaciones-lista"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container py-4">
+  <!-- Overlay para panel de notificaciones -->
+  <div id="overlayNotificaciones" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.35); z-index:1000;"></div>
+  <div class="card shadow-sm">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+      <div class="d-flex align-items-center gap-2">
+        <div style="display: flex; flex-direction: column; gap: 8px; width: 220px;">
+          <select id="filtroVivienda" class="form-select form-select-sm" style="width: 100%;">
+            <option value="todos" selected>Todos</option>
+            <option value="vivienda-normal">Vivienda Normal</option>
+            <option value="villas-isla">Villas Isla de Cortegada</option>
+          </select>
+          <input type="text" id="buscador" class="form-control form-control-sm" style="width: 100%;" placeholder="Buscar por nombre o teléfono..."/>
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-end gap-2">
+  <!-- Filtro Ver eliminados -->
+  <div class="form-check form-switch m-0">
+    <input class="form-check-input" type="checkbox" id="toggleEliminados">
+    <label class="form-check-label" for="toggleEliminados" style="user-select:none;">Ver eliminados</label>
+  </div>
+  
+  <!-- Filtro Estudio de viabilidad -->
+  <div class="form-check form-switch m-0">
+    <input class="form-check-input" type="checkbox" id="toggleViabilidad">
+    <label class="form-check-label" for="toggleViabilidad" style="user-select:none;">Con estudio de viabilidad</label>
+  </div>
+</div>
+    </div>
+
+
+        <div class="table-responsive">
+          <table id="tabla-contactos" class="table table-hover align-middle mb-0">
+            <thead>
+  <tr>
+    <th class="sortable" data-sort="your-name">Nombre</th>
+    <th class="sortable" data-sort="Fecha">Fecha</th>
+    <th>Tipo Vivienda</th>
+    <th>Teléfono</th>
+    <th>Terreno</th>
+    <th>Inversión</th>
+    <th class="sortable-ciclico" data-sort="Llamado" style="cursor: pointer;">Llam.</th>
+<th class="sortable-ciclico" data-sort="Respondido" style="cursor: pointer;">Respond.</th>
+    <th>Notas</th>
+    <th class="sortable filtrable-doc" data-sort="documentacion">Document.</th>
+    <th class="sortable" data-sort="Prioridad">Prioriz.</th>
+    <th>Detalles</th>
+    <th>Crear ficha</th>
+    <input type="hidden" name="ID">
+  </tr>
+</thead>
+            <tbody>
+              <tr>
+                <td colspan="14" class="text-center text-muted py-4">Cargando datos…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
